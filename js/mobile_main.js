@@ -12,19 +12,39 @@ $(function(){
 		e.preventDefault();
 		$("html").animate({"scrollTop":0}, 800);
 	});
-	
+	$(window).scroll(function(){
+		if($(window).scrollTop() > 100){
+			$(".top").addClass("active");
+		}
+		else{
+			$(".top").removeClass("active");
+		}
+	});
+
 	// 키비주얼
 	var n1=0;
 	var distance=0;
+	var bt=0;
 	setInterval(function(){
 		n1=n1+1;
 		distance=n1*-1*100+"%";
-		$(".keyvisual ul").animate({left:distance},300,function(){
-			$(".keyvisual ul").append($(".keyvisual li:first-child"));
+
+		$(".key ul").animate({left:distance},300,function(){
+			$(".key ul").append($(".key li:first-child"));
 			n1=n1-1;
 			distance=n1*-1*100+"%";
-			$(".keyvisual ul").animate({left:distance}, 0);
+			$(".key ul").animate({left:distance}, 0);
 		});
+	}, 3000);
+	setInterval(function(){
+		if(bt<3){
+			bt=bt+1;
+		}
+		else{
+			bt=0;
+		}
+		$(".key_button li").removeClass("active");
+		$(".key_button li").eq(bt).addClass("active");
 	}, 3000);
 
 	// 소식 버튼 높이 지정
